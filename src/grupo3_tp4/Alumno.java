@@ -52,9 +52,9 @@ public class Alumno {
     }
     
     
-    public void agregarmateria(Materia m){
+    public boolean agregarmateria(Materia m){
         
-        listamateria.add(m);
+        return listamateria.add(m);
              
     }
     
@@ -64,6 +64,13 @@ public class Alumno {
          
         
     }    
+
+    @Override
+    public String toString() {
+        return + legajo +", " +  apellido + " ," + nombre ;
+    }
+    
+    
     
     
 }

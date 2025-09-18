@@ -5,24 +5,26 @@
 package grupo3_tp4;
 
 import java.util.HashSet;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author SLDigital
  */
 public class VistaRegistro extends javax.swing.JInternalFrame {
-    
-    HashSet<Alumno> listaAlumno=new HashSet();
-    HashSet<Materia> listaMateria=new HashSet();
+
+    HashSet<Alumno> listaAlumno = new HashSet();
+    HashSet<Materia> listaMateria = new HashSet();
 
     /**
      * Creates new form VistaRegistro< >
      */
-    public VistaRegistro(HashSet<Materia> listaMateria,HashSet<Alumno> listaAlumno) {
+    public VistaRegistro(HashSet<Materia> listaMateria, HashSet<Alumno> listaAlumno) {
         initComponents();
-        this.listaAlumno=listaAlumno;
-        this.listaMateria=listaMateria;
-        
+        this.listaAlumno = listaAlumno;
+        this.listaMateria = listaMateria;
+        cargarCombos();
+
     }
 
     /**
@@ -40,19 +42,32 @@ public class VistaRegistro extends javax.swing.JInternalFrame {
         jcMateria = new javax.swing.JComboBox<>();
         jcAlumno = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        jbInscribir = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+
+        setResizable(true);
 
         jLabel1.setText("Elija una materia:");
 
         jLabel2.setText("Elija un Alumno:");
+
+        jcMateria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcMateriaActionPerformed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Engravers MT", 2, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(102, 102, 255));
         jLabel3.setText("Formulario de inscripcion");
         jLabel3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jButton1.setText("Inscribir");
+        jbInscribir.setText("Inscribir");
+        jbInscribir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbInscribirActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Salir");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -82,7 +97,7 @@ public class VistaRegistro extends javax.swing.JInternalFrame {
                 .addContainerGap(41, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(jbInscribir)
                 .addGap(18, 18, 18)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -101,7 +116,7 @@ public class VistaRegistro extends javax.swing.JInternalFrame {
                     .addComponent(jcAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(jbInscribir)
                     .addComponent(jButton2)))
         );
 
@@ -126,14 +141,50 @@ public class VistaRegistro extends javax.swing.JInternalFrame {
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jcMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcMateriaActionPerformed
+        // TODO add your handling code here:
+
+
+    }//GEN-LAST:event_jcMateriaActionPerformed
+
+    private void jbInscribirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbInscribirActionPerformed
+        // TODO add your handling code here:
+        Materia materiaSeleccionada = (Materia) jcMateria.getSelectedItem();
+        Alumno alumnoSeleccionado = (Alumno) jcAlumno.getSelectedItem();
+
+        if (materiaSeleccionada != null && alumnoSeleccionado != null) {
+            boolean agregado = alumnoSeleccionado.agregarmateria(materiaSeleccionada);
+            if (agregado) {
+                JOptionPane.showMessageDialog(this, "Alumno "+alumnoSeleccionado.getNombre() +" inscripto con éxito.");
+            } else {
+                JOptionPane.showMessageDialog(this, "El alumno "+alumnoSeleccionado.getNombre() +" ya estaba inscripto en esa materia.");
+            }
+        }
+
+    }//GEN-LAST:event_jbInscribirActionPerformed
+    public void cargarCombos() {
+
+        for (Materia mat : listaMateria) {
+
+            jcMateria.addItem(mat);
+
+        }
+
+        for (Alumno alumno : listaAlumno) {
+
+            jcAlumno.addItem(alumno);
+
+        }
+
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton jbInscribir;
     private javax.swing.JComboBox<Alumno> jcAlumno;
     private javax.swing.JComboBox<Materia> jcMateria;
     // End of variables declaration//GEN-END:variables

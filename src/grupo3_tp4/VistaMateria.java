@@ -45,6 +45,8 @@ public class VistaMateria extends javax.swing.JInternalFrame {
         jButton2 = new javax.swing.JButton();
         jbGuardarMateria = new javax.swing.JButton();
 
+        setResizable(true);
+
         jLabel2.setText("Nombre de la materia:");
 
         jLabel3.setText("Año al que pertenece:");
@@ -107,6 +109,11 @@ public class VistaMateria extends javax.swing.JInternalFrame {
         });
 
         jButton2.setText("Nuevo");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jbGuardarMateria.setText("Guardar");
         jbGuardarMateria.addActionListener(new java.awt.event.ActionListener() {
@@ -177,6 +184,15 @@ public class VistaMateria extends javax.swing.JInternalFrame {
         }
         
     }//GEN-LAST:event_jbGuardarMateriaActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        jtCodigo.setText("");
+        jtMateria.setText("");
+        jtAño.setText("");
+        
+        jtCodigo.requestFocus();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

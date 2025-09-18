@@ -75,6 +75,13 @@ public boolean equals(Object obj) {
     // Comparo por idMateria 
     return this.idMateria == otra.idMateria;
 }
+
+    @Override
+    public String toString() {
+        return + idMateria +" ,"+ nombre + ","+ año;
+    }
+
+
     
     
 }

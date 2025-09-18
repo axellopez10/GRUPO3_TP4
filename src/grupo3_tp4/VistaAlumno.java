@@ -44,6 +44,8 @@ public class VistaAlumno extends javax.swing.JInternalFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
 
+        setResizable(true);
+
         jLabel1.setText("Legajo");
 
         jLabel2.setText("Apellido");
@@ -63,6 +65,11 @@ public class VistaAlumno extends javax.swing.JInternalFrame {
         });
 
         jButton2.setText("Nuevo");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Salir");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -157,6 +164,7 @@ public class VistaAlumno extends javax.swing.JInternalFrame {
         
         if(apellido.isEmpty()|| nombre.isEmpty()){
             JOptionPane.showMessageDialog(this,"Nombre o apellido vacios");
+            
         }
         
         Alumno a=new Alumno(legajo,apellido,nombre);
@@ -172,7 +180,19 @@ public class VistaAlumno extends javax.swing.JInternalFrame {
             
             JOptionPane.showMessageDialog(this,"ingrese el tipo de dato correcto");
         }
+        
+        
     }//GEN-LAST:event_jbGuardarAlumnoActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        
+        jtLegajo.setText("");
+        jtApellido.setText("");
+        jtNombre.setText("");
+        
+        jtLegajo.requestFocus();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
